@@ -10,7 +10,6 @@ body {
   color: #222222;
 }
 
-/* Custom scrollbar for clean visual experience */
 ::-webkit-scrollbar {
   width: 8px;
 }

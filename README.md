@@ -1,8 +1,8 @@
-# VideoBelajar - Education Course Web Application
+# Misi FE 2 Intermediate
 
-Aplikasi web statis berbasis React JS untuk platform pembelajaran online (VideoBelajar). Proyek ini dibuat untuk memenuhi Mission 1 Frontend (Intermediate) dari bootcamp Harisenin.
+Aplikasi web berbasis React JS untuk platform pembelajaran online (VideoBelajar), dengan fitur **CRUD (Create, Read, Update, Delete)** untuk data kelas. Proyek ini dibuat untuk memenuhi **Mission 2 - CRUD React (Intermediate)** dari bootcamp Harisenin.
 
-**Dibuat oleh:** [Amala Al Fafan Karomi (20012)]
+**Dibuat oleh:** Amala Al Fafan Karomi 20012
 
 ---
 
@@ -11,46 +11,53 @@ Aplikasi web statis berbasis React JS untuk platform pembelajaran online (VideoB
 - **React Router DOM** — routing antar halaman (Login, Register, Homepage)
 - **Tailwind CSS** — styling & responsive design
 - **Vite** — build tool & dev server
-- **lucide-react** — icon set (ikon mata password, hamburger menu, dll)
+- **lucide-react** — icon set
 
 ## 🚀 Fitur Utama
-1. **Routing Multi Halaman (`react-router-dom`)**:
-   - `/` : Homepage / Beranda dengan Hero Banner, Filter Kategori, Grid Katalog Kelas, & Newsletter.
-   - `/login` : Halaman Masuk dengan Form Validasi.
-   - `/register` : Halaman Pendaftaran Akun Baru.
-2. **Arsitektur Komponen (Atomic Design)**:
-   - `atoms`: TombolPrimary, InputTeks, LogoBrand, RatingBintang, AvatarUser.
-   - `molecules`: InputTelepon, KartuKelas, TabKategori, KotakNewsletter.
-   - `organisms`: FormLogin, FormRegister, HeaderNav, HeroBanner, SectionKoleksiKelas, SectionNewsletter, FooterBagian.
-3. **Reusable Component via Props**:
-   - Semua komponen atoms/molecules/organisms menerima data lewat props.
-4. **Form Validation & State Management**:
-   - Pengecekan field kosong, format email valid, dan batas minimal kata sandi (min 8 karakter).
-5. **Desain Responsif**:
-   - Mengikuti Figma (Mobile, Desktop) menggunakan Tailwind CSS.
+
+### CRUD Data Kelas
+Fitur utama tugas ini — dikelola lewat state React (`useState`) di halaman Beranda:
+- **Create** — tombol "Tambah Kelas" membuka form modal untuk menambah kelas baru (judul, deskripsi, instruktur, kategori, harga, foto)
+- **Read** — daftar kelas ditampilkan dalam bentuk grid kartu, bisa difilter berdasarkan kategori
+- **Update** — tombol edit pada tiap kartu kelas membuka form yang sama dalam mode edit, terisi otomatis dengan data yang sudah ada
+- **Delete** — tombol hapus pada tiap kartu kelas untuk menghapus data dari daftar
+
+### Arsitektur Komponen (Atomic Design)
+- `atoms`: TombolPrimary, InputTeks, LogoBrand, RatingBintang, AvatarUser
+- `molecules`: InputTelepon, KartuKelas, TabKategori, KotakNewsletter, **FormKelas** (form tambah/edit kelas)
+- `organisms`: FormLogin, FormRegister, HeaderNav, HeroBanner, **SectionKoleksiKelas** (logic CRUD), SectionNewsletter, FooterBagian
+
+### Form Validation
+Pengecekan field wajib (judul, instruktur, harga) sebelum data kelas bisa disimpan.
+
+### Desain Responsif
+Menggunakan Tailwind CSS, mengikuti pendekatan mobile-first.
 
 ---
 
 ## 📁 Struktur Folder Project
+```
 ├── public/
 ├── src/
 │   ├── assets/
-│   │   └── images/          # Logo & aset gambar statis
+│   │   └── images/          
 │   ├── components/
-│   │   ├── atoms/           # Komponen dasar (Button, Input, Avatar, Star, Logo)
-│   │   ├── molecules/       # Kombinasi atom (Input Telepon, Kartu Kelas, Tab Filter)
-│   │   └── organisms/       # Komponen kompleks (Navbar, Hero, Forms, Footer)
+│   │   ├── atoms/           
+│   │   ├── molecules/       
+│   │   └── organisms/       
 │   ├── data/
-│   │   └── dataKelas.js     # Data katalog kelas
+│   │   └── dataKelas.js     
 │   ├── pages/
-│   │   ├── HalamanBeranda.jsx
+│   │   ├── HalamanBeranda.jsx   
 │   │   ├── HalamanLogin.jsx
 │   │   └── HalamanRegister.jsx
-│   ├── App.jsx               # Setup Routes
-│   ├── main.jsx               # React DOM Entrypoint
-│   └── index.css              # Custom Tailwind Setup & Font Lato
+│   ├── App.jsx               
+│   ├── main.jsx               
+│   └── index.css              
 ├── index.html
 ├── tailwind.config.js
 ├── postcss.config.js
 ├── vite.config.js
 └── package.json
+```
+

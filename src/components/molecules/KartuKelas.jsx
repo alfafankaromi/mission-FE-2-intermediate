@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Pencil, Trash2 } from 'lucide-react';
 import AvatarUser from '../atoms/AvatarUser';
 import RatingBintang from '../atoms/RatingBintang';
 
-export default function KartuKelas({ dataKelas }) {
+export default function KartuKelas({ dataKelas, onEdit, onDelete }) {
+  const [konfirmasiHapus, setKonfirmasiHapus] = useState(false);
+
   const {
+    id,
     judul,
     deskripsi,
     namaInstruktur,
@@ -15,6 +19,17 @@ export default function KartuKelas({ dataKelas }) {
     harga,
     hargaCoret
   } = dataKelas;
+
+  const tampilkanAksi = Boolean(onEdit || onDelete);
+
+  const handleKlikHapus = () => {
+    if (!konfirmasiHapus) {
+      setKonfirmasiHapus(true);
+      setTimeout(() => setKonfirmasiHapus(false), 3000);
+      return;
+    }
+    onDelete(id);
+  };
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-4 flex flex-col justify-between hover:shadow-md transition-all duration-200">
@@ -65,6 +80,36 @@ export default function KartuKelas({ dataKelas }) {
           </span>
         </div>
       </div>
+
+      {/* Tombol Aksi CRUD (Edit & Delete) */}
+      {tampilkanAksi && (
+        <div className="flex gap-2 pt-3 mt-3 border-t border-gray-100">
+          {onEdit && (
+            <button
+              type="button"
+              onClick={() => onEdit(dataKelas)}
+              className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold text-gray-600 bg-gray-50 hover:bg-gray-100 transition-colors"
+            >
+              <Pencil size={14} />
+              Edit
+            </button>
+          )}
+          {onDelete && (
+            <button
+              type="button"
+              onClick={handleKlikHapus}
+              className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold transition-colors ${
+                konfirmasiHapus
+                  ? 'bg-merah-utama text-white'
+                  : 'text-merah-utama bg-merah-muda hover:bg-red-100'
+              }`}
+            >
+              <Trash2 size={14} />
+              {konfirmasiHapus ? 'Yakin?' : 'Hapus'}
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }

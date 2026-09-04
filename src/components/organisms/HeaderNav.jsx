@@ -55,7 +55,7 @@ export default function HeaderNav({ userLoggedIn = false, onLogout }) {
           )}
         </div>
 
-        {/* Mobile Hamburger Menu Icon */}
+        {/* Mobile Menu Icon */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="md:hidden text-gray-700 hover:text-gray-900 focus:outline-none p-1"
